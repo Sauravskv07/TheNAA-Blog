@@ -25,7 +25,7 @@ class Fullpost extends Component {
         const postUrl = url.split('/').slice(3).join('/');
         console.log(postUrl);
 
-        axios.get('/blog/' + postUrl)
+        axios.get('/api/blog/' + postUrl)
             .then(res => {
                 const unixTimeStamp = new Date(res.data.date_uploaded);
                 const date = unixTimeStamp.toDateString();
@@ -49,7 +49,7 @@ class Fullpost extends Component {
             }
             );
 
-        axios.get('/topblogs')
+        axios.get('/api/topblogs')
             .then((response) => {
                 this.setState({ otherposts: response.data });
             })

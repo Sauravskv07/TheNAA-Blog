@@ -62,7 +62,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        axios.get('/topblogs')
+        axios.get('/api/topblogs')
             .then((response) => {
                 this.setState({ posts: response.data });
             })

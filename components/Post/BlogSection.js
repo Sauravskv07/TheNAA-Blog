@@ -22,7 +22,7 @@ class BlogSection extends Component {
             blogType = 'article';
         }
 
-        axios.get('/blogs/' + blogType)
+        axios.get('/api/blogs/' + blogType)
             .then(res => {
                 console.log(res.data);
                 this.setState({

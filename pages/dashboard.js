@@ -209,7 +209,7 @@ const Dashboard = () => {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        axios.get('/blogs')
+        axios.get('/api/blogs')
             .then(res => {
                 setPosts(res.data);
             })
@@ -221,7 +221,7 @@ const Dashboard = () => {
     const rerendercallback = (shouldupdate) => {
         if (shouldupdate) {
             setPosts([]);
-            axios.get('/blogs')
+            axios.get('/api/blogs')
                 .then(res => {
                     setPosts(res.data);
                 })
