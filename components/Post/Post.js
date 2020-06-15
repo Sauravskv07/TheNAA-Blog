@@ -1,6 +1,7 @@
 import React from 'react';
 // import { Card } from 'react-bootstrap';
 // import styles from './Post.module.css';
+import Link from 'next/link';
 import './Blogcard.module.css';
 import { Button } from 'react-bootstrap';
 const Post = (props) => {
@@ -17,7 +18,7 @@ const Post = (props) => {
                 <h1>{props.title}</h1>
                 <p>{props.subtitle}</p>
                 <p className="read-more">
-                    <a href={"/" + props.type + "/" + props.id} ><Button>Read More</Button></a>
+                <Link href="/posts/[id]" as={`/posts/${props.id}`}><Button>Read More</Button></Link>
                 </p>
             </div>
         </div >

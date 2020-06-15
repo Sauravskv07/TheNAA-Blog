@@ -21,10 +21,8 @@ const dev = process.env.NODE_ENV !== 'production'
 
 let app;
 
-if(process.env.NODE_ENV === 'production')
-  app = next();
-else
-  app = next({dev});
+const dev = process.env.NODE_ENV !== 'production';
+const app = next({ dev });
 
 const handle = app.getRequestHandler()
 

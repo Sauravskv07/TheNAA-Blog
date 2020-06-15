@@ -2,11 +2,10 @@
 
 const ObjectId = require('bson').ObjectId;
 require('dotenv').config();
-
 let naa_db;
 let blogs_collection;
 
-module.exports = class UsersDAO {
+module.exports = class BlogsDAO {
   static async injectDB(conn) {
     if (blogs_collection) {
       return;
@@ -63,7 +62,7 @@ module.exports = class UsersDAO {
     return blogs.toArray();
   }
 
-  static async getBlog(postType,postId){ 
+  static async getBlog(postId){ 
   
     let blog;
 
@@ -71,7 +70,6 @@ module.exports = class UsersDAO {
   
       blog = await blogs_collection.findOneAndUpdate(
         {
-          type:postType,
           _id:ObjectId(postId)
         },
         {
