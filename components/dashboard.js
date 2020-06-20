@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
 import axios from 'axios';
 import { Button, Modal, Container, Table, Form, Col } from 'react-bootstrap';
-import Navbar from '../components/utilities/Navbar/Navbar';
+import Navbar from './utilities/Navbar/Navbar';
 // import CKEditor from '@ckeditor/ckeditor5-react';
 // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 

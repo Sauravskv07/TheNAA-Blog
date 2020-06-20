@@ -5,25 +5,11 @@ import Navbar from '../../components/utilities/Navbar/Navbar';
 import styles from '../../public/styles/Fullpost.module.css';
 import Footer from '../../components/utilities/Footer/Footer';
 import Post from '../../components/Post/Post';
-import BlogHelper from '../../helpers/blogs.helper'
 import { Suspense } from 'react'
-import useSWR from 'swr'
-
-// function TopBlogs() {
-//     const data = useSWR('/api/user', async ()=>{
-//         const res = await axios('/api/topblogs');
-//         return res;
-//     })
-    
-//     const result = data.map(post => {
-//         const date = new Date(post.date_uploaded).toDateString();
-//         return <Post key={post._id} id={post._id} title={post.title} author={post.author} subtitle={post.subtitle} content={post.content} image={post.location} date={date} type={post.type} />;
-//     });
-//   return result;
-// }
 
 export default function FullPost({post}) {
-    console.log('post to frontend= ',post);
+    if(!post)
+      return (<div>Nothing to show</div>);
     return (
         <React.Fragment>
             <Navbar />
@@ -31,7 +17,7 @@ export default function FullPost({post}) {
                 <h1 className={styles.lead}>{post.title}</h1>
                 <h5 style={{ fontWeight: '400' }}>{post.subtitle}</h5>
                 <p className={styles.authinfo}>{post.author}, {post.date}</p>
-                <Image className={styles.fullpostimg} src={post.image} fluid />
+                <Image className={styles.fullpostimg} src={post.location} fluid />
                 <div className={styles.postcontent} id="content" dangerouslySetInnerHTML={{ __html: post.content }} />
             </Container>
             <Footer />
@@ -40,7 +26,11 @@ export default function FullPost({post}) {
 }
 
 export async function getStaticPaths() {
-  const paths = [];
+  const paths = [{
+    params:{
+      id: '5edb0d65a71b862978a29dc8'
+    }
+  }];
   return {
     paths,
     fallback: true
@@ -49,8 +39,8 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   console.log("params id = ",params.id);
-  const post = await BlogHelper(params.id);
-  post._id = post._id.toString();
+  const res = await fetch('http://localhost:3000/api/blog/'+params.id);
+  const post = await res.json();
   console.log("post returned = ", post);
   return {
     props: {

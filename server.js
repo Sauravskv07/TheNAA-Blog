@@ -16,13 +16,9 @@ let BlogsDao = require(path.join(__dirname,'src','blogsDao.js'));
 let AuthorDao = require(path.join(__dirname,'src','authorDao.js'));
 
 const port = process.env.PORT || 3000;
-    
-const dev = process.env.NODE_ENV !== 'production'
 
-let app;
-
-const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev });
+let dev = process.env.NODE_ENV !== 'production';
+let app = next({ dev });
 
 const handle = app.getRequestHandler()
 
@@ -79,7 +75,11 @@ app.prepare()
       server.use('/api',require(path.join(__dirname,'api','login.js')));
 
       server.use(express.static(path.join(__dirname,'public')));
-
+      
+      // server.get("/posts/:id", (req, res) => {
+      //     return handle(req, res, { id: req.params.id });
+      // });   
+      
       server.get('*', (req, res) => {
         return handle(req, res)
       })

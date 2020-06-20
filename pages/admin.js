@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, FormGroup, FormControl } from "react-bootstrap";
-import Dashboard from "./dashboard";
+import Dashboard from "../components/dashboard";
 const bcrypt = require('bcryptjs');
 const hash = '$2y$10$Yh8p6QCBk.piJIE8ElxKM.Oj.2ue9/4D1jVaMppmKnx90BXmjurn2';
 
@@ -25,7 +25,7 @@ function Login() {
         !showdashboard ?
             <div style={{ width: '300px', margin: '3em auto' }}>
                 <form onSubmit={handleSubmit}>
-                    <FormGroup controlId="text" bsSize="large">
+                    <FormGroup controlId="text" bssize="large">
                         <label>Name</label>
                         <FormControl
                             autoFocus
@@ -34,7 +34,7 @@ function Login() {
                             onChange={e => setName(e.target.value)}
                         />
                     </FormGroup>
-                    <FormGroup controlId="password" bsSize="large">
+                    <FormGroup controlId="password" bssize="large">
                         <label>Password</label>
                         <FormControl
                             value={password}
